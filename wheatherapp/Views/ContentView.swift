@@ -19,37 +19,30 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-            if let location = locationManager.location{
-                
-                if let weather = weather{
-                    Text("Weather Data Feched")
-                    Text("Weather Data Feched")
-
-                }else{
+            if let location = locationManager.location {
+                if let weather = weather {
+                    WeatherView(weather: weather)
+                } else {
                     LoadingView()
                         .task {
-                            do{
-                             weather = try await
-                                weatherManager.getCurrentWheather(latitude: location.latitude, longitude: location.longitude)
-                                
-                            }catch{
-                                print("Error Getting\(error)")
+                            do {
+                                weather = try await weatherManager.getCurrentWheather(latitude: location.latitude, longitude: location.longitude)
+                            } catch {
+                                print("Error getting weather: \(error)")
                             }
                         }
                 }
-                Text("your coordinates are: \(location.latitude),\(location.longitude)")
-            }else{
-                if locationManager.isLoading{
+            } else {
+                if locationManager.isLoading {
                     LoadingView()
-                }else{
+                } else {
                     WelcomView()
                         .environmentObject(locationManager)
                 }
             }
         }
-        .background(Color(hue: 0.656, saturation: 0.811, brightness: 0.34))
+        .background(Color(hue: 0.656, saturation: 0.787, brightness: 0.354))
         .preferredColorScheme(.dark)
-        
     }
 
 }

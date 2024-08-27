@@ -32,7 +32,8 @@ struct WelcomView: View {
             .cornerRadius(10)
             .symbolVariant(.fill)
             .foregroundColor(.white)
-        }        
+            
+        }
         
 
     }

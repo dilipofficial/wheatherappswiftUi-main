@@ -13,7 +13,7 @@ struct LoadingView: View {
         ProgressView()
             .progressViewStyle(.circular)
             .tint(.white)
-            .frame(width: .infinity, height: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         
     }
 }
